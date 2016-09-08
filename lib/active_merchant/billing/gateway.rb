@@ -96,6 +96,10 @@ module ActiveMerchant #:nodoc:
         :test_mode_live_card => 'test_mode_live_card'
       }
 
+      # Indicates if the gateway supports 3D Secure authentication
+      class_attribute :supports_3d_secure
+      self.supports_3d_secure = false
+
       cattr_reader :implementations
       @@implementations = []
 
