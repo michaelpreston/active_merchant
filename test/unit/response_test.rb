@@ -6,6 +6,24 @@ class ResponseTest < Test::Unit::TestCase
     assert !Response.new(false, 'message', :param => 'value').success?
   end
 
+  def test_three_d_secure_required
+    assert Response.new(false, 'message', {}, :three_d_secure => true).three_d_secure?
+    assert_false Response.new(false, 'message', {}, :three_d_secure => false).three_d_secure?
+  end
+
+  def test_three_d_secure_params
+    pa_req = 'TEST'
+    md = '123456'
+
+    acs_url = 'http://example.com'
+
+    response = Response.new(false, 'message', {}, :three_d_secure => true, :pa_req => pa_req, :md => md, :acs_url => acs_url)
+
+    assert_equal pa_req, response.pa_req
+    assert_equal md, response.md
+    assert_equal acs_url, response.acs_url
+  end
+
   def test_response_without_avs
     response = Response.new(true, 'message', :param => 'value')
     assert response.avs_result.has_key?('code')

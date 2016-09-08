@@ -18,6 +18,10 @@ module ActiveMerchant #:nodoc:
         @fraud_review
       end
 
+      def three_d_secure?
+        @three_d_secure
+      end
+
       def initialize(success, message, params = {}, options = {})
         @success, @message, @params = success, message, params.stringify_keys
         @test = options[:test] || false
