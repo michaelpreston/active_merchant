@@ -270,6 +270,14 @@ class CreditCardTest < Test::Unit::TestCase
     assert_valid @solo
   end
 
+  def test_should_be_true_when_credit_card_has_a_token
+    c = CreditCard.new
+    assert_false c.token?
+
+    c = CreditCard.new(:token => "ABC123")
+    assert c.token?
+  end
+
   def test_should_require_a_validate_non_empty_issue_number_for_solo_or_switch
     @solo.issue_number = "invalid"
 

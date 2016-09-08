@@ -9,6 +9,12 @@ class GatewayTest < Test::Unit::TestCase
     Gateway.money_format = :dollars
   end
 
+  def test_should_be_able_to_check_for_3d_secure_support
+    assert !Gateway.supports_3d_secure
+    Gateway.supports_3d_secure = true
+    assert Gateway.supports_3d_secure
+  end
+
   def test_should_detect_if_a_card_is_supported
     Gateway.supported_cardtypes = [:visa, :bogus]
     assert [:visa, :bogus].all? { |supported_cardtype| Gateway.supports?(supported_cardtype) }

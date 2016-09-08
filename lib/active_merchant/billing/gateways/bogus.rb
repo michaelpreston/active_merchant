@@ -19,6 +19,7 @@ module ActiveMerchant #:nodoc:
 
       self.supported_countries = []
       self.supported_cardtypes = [:bogus]
+      self.supports_3d_secure = true
       self.homepage_url = 'http://example.com'
       self.display_name = 'Bogus'
 

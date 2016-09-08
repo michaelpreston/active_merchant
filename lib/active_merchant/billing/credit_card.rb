@@ -111,6 +111,17 @@ module ActiveMerchant #:nodoc:
         @brand = (value.respond_to?(:downcase) ? value.downcase : value)
       end
 
+
+      # Returns a pre-authentication card token
+      #
+      # @return [String]
+      attr_accessor :token
+
+      def token?
+        @token.present?
+      end
+
+
       # Returns or sets the first name of the card holder.
       #
       # @return [String]

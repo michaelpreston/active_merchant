@@ -91,6 +91,10 @@ class BogusTest < Test::Unit::TestCase
     end
   end
 
+  def test_supports_3d_secure
+    assert @gateway.supports_3d_secure
+  end
+
   def test_store
     assert  @gateway.store(credit_card(CC_SUCCESS_PLACEHOLDER)).success?
     response = @gateway.store(credit_card(CC_FAILURE_PLACEHOLDER))
